@@ -35,10 +35,8 @@ __published:	// IDE-managed Components
         TImage *RightUp1;
         TImage *RightUp2;
         TImage *RightUp3;
-        TLabel *whatSide;
         TLabel *leftTab;
         TLabel *rightTab;
-        TLabel *bounceTab;
         void __fastcall ballTimerTimer(TObject *Sender);
         void __fastcall FormKeyDown(TObject *Sender, WORD &Key,
           TShiftState Shift);

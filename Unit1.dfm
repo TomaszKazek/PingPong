@@ -2556,33 +2556,31 @@ object Form1: TForm1
       0000}
     Visible = False
   end
-  object whatSide: TLabel
-    Left = 440
-    Top = 16
-    Width = 44
-    Height = 13
-    Caption = 'whatSide'
-  end
   object leftTab: TLabel
-    Left = 400
-    Top = 72
-    Width = 6
-    Height = 13
+    Left = 424
+    Top = 24
+    Width = 14
+    Height = 32
     Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
   end
   object rightTab: TLabel
-    Left = 512
-    Top = 72
-    Width = 6
-    Height = 13
+    Left = 480
+    Top = 24
+    Width = 14
+    Height = 32
     Caption = '0'
-  end
-  object bounceTab: TLabel
-    Left = 448
-    Top = 120
-    Width = 55
-    Height = 13
-    Caption = 'bounceTab'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
   end
   object ballTimer: TTimer
     Enabled = False

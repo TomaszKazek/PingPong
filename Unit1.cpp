@@ -2,7 +2,6 @@
 #pragma hdrstop
 
 #include "Unit1.h"
-#include <math.h>
 
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -12,12 +11,20 @@ TForm1 *Form1;
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
-ShowMessage("cos");
+AnsiString text1,text2,text3,text4,text5, text6, text7;
+text1= "Witaj w Ping-pongu!\n";
+text2= "Zasady sa bardzo podobne do prawdziwej gry. Jedynym wyjatkiem jest serwowanie zawsze przez gracza, ktory przed chwila zdobyl punkt.\n";
+text3= "Do serwowania obu graczom sluzy spacja.\n" ;
+text4= "Gracz lewy steruje paletka przy pomocy 'w' (gora) i 's' (dol), a prawy strzalkami.\n";
+text5= "Gracz lewy steruje moca przy pomocy 'q' (mocniej) i 'a' (slabiej), a prawy analogicznie 'o' oraz 'l' (male L).\n";
+text6= "O aktualnych ustawieniach mocy informuja strzalki za paletkami.\n";
+text7= "Niech wygra lepszy!" ;
+ShowMessage(text1+text2+text3+text4+text5+text6+text7);
 }
 //---------------------------------------------------------------------------
 
-float vHorizontal=10,vVertical=0, faster=1.1;
-int bounceCounter=-1, leftPoints=0, rightPoints=0, x=-15;
+float vHorizontal=10,vVertical=0;
+int bounceCounter=-1, leftPoints=0, rightPoints=0;
 AnsiString side="left", lastTouch="left";
 bool leftPaddleActive=true, rightPaddleActive=true;
 
@@ -33,10 +40,9 @@ if(ball->Top+ball->Height>=background->Top+background->Height)
 vVertical*=-1;
 vVertical-=1;
 bounceCounter+=1;
-bounceTab->Caption=IntToStr(bounceCounter);
 }
 
-//fail
+//right point
 if(
 (lastTouch=="left")
 &&(
@@ -53,7 +59,6 @@ if(
 )
 {
 ballTimer->Enabled=false;
-bounceTab->Caption=lastTouch+" "+side+" "+IntToStr(bounceCounter);
 rightPoints+=1;
 rightTab->Caption=IntToStr(rightPoints);
 ball->Top=250;
@@ -63,6 +68,7 @@ vHorizontal=-10;
 lastTouch="right";
 }
 
+//left point
 if(
 (lastTouch=="right")
 &&(
@@ -79,7 +85,6 @@ if(
 )
 {
 ballTimer->Enabled=false;
-bounceTab->Caption=lastTouch+" "+side+" "+IntToStr(bounceCounter);
 leftPoints+=1;
 leftTab->Caption=IntToStr(leftPoints);
 ball->Top=250;
@@ -95,8 +100,6 @@ lastTouch="left";
 //leftPaddle
 if((ball->Left<=leftPaddle->Left+leftPaddle->Width)&&(ball->Top+ball->Height>=leftPaddle->Top)&&(ball->Top<=leftPaddle->Top+leftPaddle->Height))
 {
-//vHorizontal=abs(vHorizontal);
-//vVertical=abs(vVertical)*-1;
 if (LeftUp3->Visible==true) {vHorizontal=21; vVertical=-21;}
 if (LeftUp2->Visible==true) {vHorizontal=19; vVertical=-19;}
 if (LeftUp1->Visible==true) {vHorizontal=17; vVertical=-17;}
@@ -112,8 +115,6 @@ bounceCounter=0;
 //rightPaddle
 if((ball->Left+ball->Width>=rightPaddle->Left)&&(ball->Top+ball->Height>=rightPaddle->Top)&&(ball->Top<=rightPaddle->Top+rightPaddle->Height))
 {
-//vHorizontal=abs(vHorizontal)*-1;
-//vVertical=abs(vVertical)*-1;
 if (RightUp3->Visible==true) {vHorizontal=-21; vVertical=-21;}
 if (RightUp2->Visible==true) {vHorizontal=-19; vVertical=-19;}
 if (RightUp1->Visible==true) {vHorizontal=-17; vVertical=-17;}
@@ -131,7 +132,7 @@ vVertical+=1;
 
 //side
 
-if (ball->Left+0.5*ball->Width>background->Left+0.5*background->Width)
+if (ball->Left+ball->Width>background->Left+0.5*background->Width)
 {
 if (side=="left")
 {
@@ -140,7 +141,7 @@ bounceCounter=0;
 }
 side="right";
 }
-if (ball->Left+0.5*ball->Width<background->Left+0.5*background->Width)
+if (ball->Left+ball->Width<background->Left+0.5*background->Width)
 {
 if (side=="right")
 {
@@ -149,7 +150,6 @@ bounceCounter=0;
 }
 side="left";
 }
-whatSide->Caption=side+" "+lastTouch;
 }
 //---------------------------------------------------------------------------
 
